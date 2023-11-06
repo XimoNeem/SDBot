@@ -7,7 +7,7 @@ from scripts.bot_messages import *
 
 
 class BotPage:
-    def __init__(self, page_text: str, page_id: str, page_markup: list[tuple]=None, page_image: str=None, page_parent: str = 'welcome'):
+    def __init__(self, page_text: str, page_id: str, page_markup: list[tuple]=None, page_image: str=None, page_parent: str = 'welcome', call_back:str = ''):
         self.page_id = page_id
         self.text= page_text
         self.imageURL = page_image
@@ -17,7 +17,7 @@ class BotPage:
             for row in page_markup:
                 row_buttons = []
                 for item in row:
-                    row_buttons.append(types.InlineKeyboardButton(text=str(item), callback_data=str(item)))
+                    row_buttons.append(types.InlineKeyboardButton(text=str(item), callback_data=f'{call_back}{str(item)}'))
                 keyboard.append(row_buttons)
             
             self.reply_markup = types.InlineKeyboardMarkup(keyboard)
